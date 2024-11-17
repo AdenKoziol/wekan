@@ -1457,3 +1457,35 @@ Migrations.add('remove-unused-planning-poker', () => {
     noValidateMulti,
   );
 });
+
+Migrations.add('remove-user-profile-hiddenSystemMessages', () => {
+  Users.update(
+    {
+      "profile.hiddenSystemMessages": {
+        $exists: true,
+      },
+    },
+    {
+      $unset: {
+        "profile.hiddenSystemMessages": 1,
+      },
+    },
+    noValidateMulti,
+  );
+});
+
+Migrations.add('remove-user-profile-hideCheckedItems', () => {
+  Users.update(
+    {
+      "profile.hideCheckedItems": {
+        $exists: true,
+      },
+    },
+    {
+      $unset: {
+        "profile.hideCheckedItems": 1,
+      },
+    },
+    noValidateMulti,
+  );
+});

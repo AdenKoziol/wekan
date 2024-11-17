@@ -1,8 +1,18 @@
 import { ReactiveCache } from '/imports/reactiveCache';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 // XXX There is no reason to define these shortcuts globally, they should be
 // attached to a template (most of them will go in the `board` template).
+
+window.addEventListener('keydown', (e) => {
+  // Only handle event if coming from body
+  if (e.target !== document.body) return;
+
+  // Only handle event if it's in another language
+  if (String.fromCharCode(e.which).toLowerCase() === e.key) return;
+
+  // Trigger the corresponding action
+  Mousetrap.trigger(String.fromCharCode(e.which).toLowerCase());
+});
 
 function getHoveredCardId() {
   const card = $('.js-minicard:hover').get(0);
@@ -140,6 +150,26 @@ Mousetrap.bind(numArray, (evt, key) => {
   }
 });
 
+Mousetrap.bind('m', evt => {
+  const cardId = getSelectedCardId();
+  if (!cardId) {
+    return;
+  }
+
+  const currentUserId = Meteor.userId();
+  if (currentUserId === null) {
+    return;
+  }
+
+  if (ReactiveCache.getCurrentUser().isBoardMember()) {
+    const card = ReactiveCache.getCard(cardId);
+    card.toggleAssignee(currentUserId);
+    // We should prevent scrolling in card when spacebar is clicked
+    // This should do it according to Mousetrap docs, but it doesn't
+    evt.preventDefault();
+  }
+});
+
 Mousetrap.bind('space', evt => {
   const cardId = getSelectedCardId();
   if (!cardId) {
@@ -160,7 +190,7 @@ Mousetrap.bind('space', evt => {
   }
 });
 
-Mousetrap.bind('c', evt => {
+Mousetrap.bind('-', evt => {
   const cardId = getSelectedCardId();
   if (!cardId) {
     return;
@@ -180,6 +210,30 @@ Mousetrap.bind('c', evt => {
   }
 });
 
+Mousetrap.bind('n', evt => {
+  const cardId = getSelectedCardId();
+  if (!cardId) {
+    return;
+  }
+
+  const currentUserId = Meteor.userId();
+  if (currentUserId === null) {
+    return;
+  }
+
+  if (Utils.canModifyBoard()) {
+    // Find the current hovered card
+    const card = ReactiveCache.getCard(cardId);
+
+    // Find the button and click it
+    $(`#js-list-${card.listId} .list-body .minicards .open-minicard-composer`).click()
+
+    // We should prevent scrolling in card when spacebar is clicked
+    // This should do it according to Mousetrap docs, but it doesn't
+    evt.preventDefault();
+  }
+});
+
 Template.keyboardShortcuts.helpers({
   mapping: [
     {
@@ -193,6 +247,10 @@ Template.keyboardShortcuts.helpers({
     {
       keys: ['a'],
       action: 'shortcut-filter-my-assigned-cards',
+    },
+    {
+      keys: ['n'],
+      action: 'add-card-to-bottom-of-list',
     },
     {
       keys: ['f'],
@@ -220,10 +278,14 @@ Template.keyboardShortcuts.helpers({
     },
     {
       keys: ['SPACE'],
+      action: 'shortcut-add-self',
+    },
+    {
+      keys: ['n'],
       action: 'shortcut-assign-self',
     },
     {
-      keys: ['c'],
+      keys: ['-'],
       action: 'archive-card',
     },
     {

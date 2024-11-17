@@ -8,7 +8,6 @@ import {
 } from '../config/const';
 import Attachments, { fileStoreStrategyFactory } from "./attachments";
 import { copyFile } from './lib/fileStoreStrategy.js';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Cards = new Mongo.Collection('cards');
 
@@ -473,6 +472,17 @@ Cards.attachSchema(
       decimal: true,
       optional: true,
       defaultValue: 0,
+    },
+    showActivities: {
+      type: Boolean,
+      defaultValue: false,
+    },
+    hideFinishedChecklistIfItemsAreHidden: {
+      /**
+       * hide completed checklist?
+       */
+      type: Boolean,
+      optional: true,
     },
   }),
 );
@@ -2166,6 +2176,22 @@ Cards.mutations({
     } else {
       return this.assignCustomField(customFieldId);
     }
+  },
+
+  toggleShowActivities() {
+    return {
+      $set: {
+        showActivities: !this.showActivities,
+      }
+    };
+  },
+
+  toggleHideFinishedChecklist() {
+    return {
+      $set: {
+        hideFinishedChecklistIfItemsAreHidden: !this.hideFinishedChecklistIfItemsAreHidden,
+      }
+    };
   },
 
   setCustomField(customFieldId, value) {

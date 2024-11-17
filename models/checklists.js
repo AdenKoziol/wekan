@@ -27,14 +27,6 @@ Checklists.attachSchema(
       type: Date,
       optional: true,
     },
-    showAtMinicard: {
-      /**
-       * Show at minicard. Default: false.
-       */
-      type: Boolean,
-      optional: true,
-      defaultValue: false,
-    },
     createdAt: {
       /**
        * Creation date of the checklist
@@ -70,6 +62,20 @@ Checklists.attachSchema(
        */
       type: Number,
       decimal: true,
+    },
+    hideCheckedChecklistItems: {
+      /**
+       * hide the checked checklist-items?
+       */
+      type: Boolean,
+      optional: true,
+    },
+    hideAllChecklistItems: {
+      /**
+       * hide all checklist items ?
+       */
+      type: Boolean,
+      optional: true,
     },
   }),
 );
@@ -124,7 +130,18 @@ Checklists.helpers({
     return ret;
   },
   isFinished() {
-    return 0 !== this.itemCount() && this.itemCount() === this.finishedCount();
+    let ret = this.hideAllChecklistItems;
+    if (!ret) {
+      ret = 0 !== this.itemCount() && this.itemCount() === this.finishedCount();
+    }
+    return ret;
+  },
+  showChecklist(hideFinishedChecklistIfItemsAreHidden) {
+    let ret = true;
+    if (this.isFinished() && hideFinishedChecklistIfItemsAreHidden === true && (this.hideCheckedChecklistItems === true || this.hideAllChecklistItems)) {
+      ret = false;
+    }
+    return ret;
   },
   checkAllItems() {
     const checkItems = ReactiveCache.getChecklistItems({ checklistId: this._id });
@@ -141,9 +158,6 @@ Checklists.helpers({
   itemIndex(itemId) {
     const items = ReactiveCache.getChecklist({ _id: this._id }).items;
     return _.pluck(items, '_id').indexOf(itemId);
-  },
-  hasShowChecklistAtMinicard() {
-    return showAtMinicard || false;
   },
 });
 
@@ -202,13 +216,18 @@ Checklists.mutations({
       },
     };
   },
-
-  toggleShowChecklistAtMinicard(checklistId) {
-    const value = this.hasShowChecklistAtMinicard();
+  toggleHideCheckedChecklistItems() {
     return {
       $set: {
-        'showAtMinicard': !value,
-      },
+        hideCheckedChecklistItems: !this.hideCheckedChecklistItems,
+      }
+    };
+  },
+  toggleHideAllChecklistItems() {
+    return {
+      $set: {
+        hideAllChecklistItems: !this.hideAllChecklistItems,
+      }
     };
   },
 });

@@ -172,13 +172,6 @@ Users.attachSchema(
       type: Boolean,
       optional: true,
     },
-    'profile.hideCheckedItems': {
-      /**
-       * does the user want to hide checked checklist items?
-       */
-      type: Boolean,
-      optional: true,
-    },
     'profile.cardMaximized': {
       /**
        * has user clicked maximize card?
@@ -189,13 +182,6 @@ Users.attachSchema(
     'profile.customFieldsGrid': {
       /**
        * has user at card Custom Fields have Grid (false) or one per row (true) layout?
-       */
-      type: Boolean,
-      optional: true,
-    },
-    'profile.hiddenSystemMessages': {
-      /**
-       * does the user want to hide system messages?
        */
       type: Boolean,
       optional: true,
@@ -860,16 +846,6 @@ Users.helpers({
     return profile.showDesktopDragHandles || false;
   },
 
-  hasHideCheckedItems() {
-    const profile = this.profile || {};
-    return profile.hideCheckedItems || false;
-  },
-
-  hasHiddenSystemMessages() {
-    const profile = this.profile || {};
-    return profile.hiddenSystemMessages || false;
-  },
-
   hasCustomFieldsGrid() {
     const profile = this.profile || {};
     return profile.customFieldsGrid || false;
@@ -1060,23 +1036,6 @@ Users.mutations({
     };
   },
 
-  toggleHideCheckedItems() {
-    const value = this.hasHideCheckedItems();
-    return {
-      $set: {
-        'profile.hideCheckedItems': !value,
-      },
-    };
-  },
-
-  toggleSystem(value = false) {
-    return {
-      $set: {
-        'profile.hiddenSystemMessages': !value,
-      },
-    };
-  },
-
   toggleFieldsGrid(value = false) {
     return {
       $set: {
@@ -1216,10 +1175,6 @@ Meteor.methods({
     const user = ReactiveCache.getCurrentUser();
     user.toggleHideCheckedItems();
   },
-  toggleSystemMessages() {
-    const user = ReactiveCache.getCurrentUser();
-    user.toggleSystem(user.hasHiddenSystemMessages());
-  },
   toggleCustomFieldsGrid() {
     const user = ReactiveCache.getCurrentUser();
     user.toggleFieldsGrid(user.hasCustomFieldsGrid());
@@ -1262,43 +1217,6 @@ Meteor.methods({
 
 if (Meteor.isServer) {
   Meteor.methods({
-    setAllUsersHideSystemMessages() {
-      if (ReactiveCache.getCurrentUser()?.isAdmin) {
-        // If setting is missing, add it
-        Users.update(
-          {
-            'profile.hiddenSystemMessages': {
-              $exists: false,
-            },
-          },
-          {
-            $set: {
-              'profile.hiddenSystemMessages': true,
-            },
-          },
-          {
-            multi: true,
-          },
-        );
-        // If setting is false, set it to true
-        Users.update(
-          {
-            'profile.hiddenSystemMessages': false,
-          },
-          {
-            $set: {
-              'profile.hiddenSystemMessages': true,
-            },
-          },
-          {
-            multi: true,
-          },
-        );
-        return true;
-      } else {
-        return false;
-      }
-    },
     setCreateUser(
       fullname,
       username,

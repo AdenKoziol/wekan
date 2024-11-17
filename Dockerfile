@@ -1,7 +1,7 @@
-FROM ubuntu:24.04
+FROM ubuntu:24.10
 LABEL maintainer="wekan"
 LABEL org.opencontainers.image.ref.name="ubuntu"
-LABEL org.opencontainers.image.version="24.04"
+LABEL org.opencontainers.image.version="24.10"
 LABEL org.opencontainers.image.source="https://github.com/wekan/wekan"
 
 # 2022-04-25:
@@ -272,4 +272,5 @@ WORKDIR /home/wekan/app
 #
 # CMD ["node", "/build/main.js"]
 # CMD ["bash", "-c", "ulimit -s 65500; exec node --stack-size=65500 /build/main.js"]
+# CMD ["bash", "-c", "ulimit -s 65500; exec node --stack-size=65500 --max-old-space-size=8192 /build/main.js"]
 CMD ["bash", "-c", "ulimit -s 65500; exec node /build/main.js"]

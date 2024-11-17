@@ -1,6 +1,5 @@
 import { ReactiveCache } from '/imports/reactiveCache';
 import { TAPi18n } from '/imports/i18n';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Sidebar = null;
 
@@ -137,7 +136,7 @@ BlazeComponent.extendComponent({
 
 Blaze.registerHelper('Sidebar', () => Sidebar);
 
-Template.homeSidebar.helpers({
+BlazeComponent.extendComponent({
   hiddenMinicardLabelText() {
     currentUser = ReactiveCache.getCurrentUser();
     if (currentUser) {
@@ -148,7 +147,20 @@ Template.homeSidebar.helpers({
       return false;
     }
   },
-});
+  showActivities() {
+    let ret = Utils.getCurrentBoard().showActivities ?? false;
+    return ret;
+  },
+  events() {
+    return [
+      {
+        'click #toggleShowActivitiesBoard'() {
+          Utils.getCurrentBoard().toggleShowActivities();
+        },
+      },
+    ];
+  },
+}).register('homeSidebar');
 
 Template.boardInfoOnMyBoardsPopup.helpers({
   hideCardCounterList() {

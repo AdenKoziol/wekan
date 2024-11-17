@@ -15,12 +15,92 @@ Fixing other platforms In Progress.
 
 [How to upgrade WeKan](https://github.com/wekan/wekan/issues/4585)
 
-# Upcoming WeKan ® release
+# v7.63 2024-11-16 WeKan ® release
+
+This release adds the following new features:
+
+- [Always close sidebar when user clicks ESC](https://github.com/wekan/wekan/pull/5571).
+  Thanks to NadavTasher.
+- [Added 'n' shortcut for adding new minicards to current list](https://github.com/wekan/wekan/pull/5570).
+  Thanks to NadavTasher.
+- [Patch to allow shortcuts to work when another keyboard layout is used](https://github.com/wekan/wekan/pull/5574).
+  Thanks to NadavTasher.
+
+and adds the following updates:
+
+- [Updated scaling docs](https://github.com/wekan/wekan/commit/92af6f71d9c60acbca8f65c7ec1822818186639c).
+  Thanks to xet7.
+
+and fixes the following bugs:
+
+- [Fix some text alignment issues when using RTL languages](https://github.com/wekan/wekan/pull/5572).
+  Thanks to NadavTasher.
+- [Hide scrollbars where they interrupt](https://github.com/wekan/wekan/pull/5573).
+  Thanks to NadavTasher.
+- [Disable sidebar showing when filtering using keyboard shortcut](https://github.com/wekan/wekan/pull/5575).
+  Thanks to NadavTasher.
+- [Change move-to-archive keyboard shortcut to '-', because of Ctrl + C shortcut](https://github.com/wekan/wekan/pull/5576).
+  Thanks to NadavTasher.
+- [Potential bug(fix?) - Add assign-self keyboard shortcut (old shortcut actually adds)](https://github.com/wekan/wekan/pull/5577).
+  Thanks to NadavTasher.
+- [Sidebar style overhaul - absolute positioning, weird style fixes, disable sidebar scrollbar](https://github.com/wekan/wekan/pull/5578).
+  Thanks to NadavTasher.
+- [Revert adding more stack size](https://github.com/wekan/wekan/commit/edb73982953d63066494dbc096bdeb62f7fe730b).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.62 2024-11-15 WeKan ® release
+
+This release adds the following new features:
+
+- [Added comment section on card details to avoid loading the card comment activities from the server](https://github.com/wekan/wekan/pull/5566).
+  Thanks to mfilser.
+- [Checklist items hide per card](https://github.com/wekan/wekan/pull/5567).
+  Thanks to mfilser.
+- [Checklist multiline insert (many checklist items at once)](https://github.com/wekan/wekan/pull/5568).
+  Thanks to mfilser.
+- [Each checklist can now be configured to hide checked checklist items](https://github.com/wekan/wekan/pull/5569).
+  Thanks to mfilser.
+
+and adds the following updates:
+
+- [Copied updated Docs from wiki to WeKan repo](https://github.com/wekan/wekan/commit/559251eb0d8aea6a714f14224497d0a25c7a3864).
+  Thanks to xet7.
+- [Updated docs about Linked Cards](https://github.com/wekan/wekan/commit/96627540da0b6e12890ee1660f4ff0f469bb0e25).
+  Thanks to xet7.
+- [Add docs about how at LXC/LXD Fix: System does not fully support snapd](https://github.com/wekan/wekan/commit/508bbb37ce960c88c2a7d0b2cb35e5d8790df19f).
+  Thanks to xet7.
+- [Copied from Sandstorm developer discussions to docs fix for running Sandstorm at Ubuntu 24.04](https://github.com/wekan/wekan/commit/8ac9353c5313402e00160843ca57405ebeb128cb).
+  Thanks to xet7.
+- [Update ldap-sync.py reference](https://github.com/wekan/wekan/pull/5555).
+  Thanks to emmanuel-ferdman.
+- [Updated dependencies](https://github.com/wekan/wekan/commit/b24acefa6f6696b702f2c3ceb28d6d6290017bb2).
+  Thanks to developers of dependencies.
+- [Update Snap Candidate to MongoDB 6.0.19. Updated WeKan Windows version numbers. Added Cron docs](https://github.com/wekan/wekan/commit/fb4d95672e37d849ff52954c79eede2af7d2a509).
+  Thanks to xet7.
+- [Updated docs sidebar](https://github.com/wekan/wekan/commit/5448a1569113142ab5b2440763c9642c88e86ba4)-
+  Thanks to xet7.
+- [Updated Docker base image to Ubuntu 24.10](https://github.com/wekan/wekan/commit/7a34bc3eb03943506abe5e54501d1906fc16540b).
+  Thanks to Ubuntu developers.
+
+and fixes the following bugs:
+
+- [Add more stack size](https://github.com/wekan/wekan/commit/324be07b859937966f98feb2aeea8f344c689bb0).
+  Thanks to xet7.
+- [Fix Warning: missing space before text for line 210 of jade file client/components/activities/activities.jade](https://github.com/wekan/wekan/commit/a27f8ecfa9971740a019a955d3f8d0e5a5dd8dab).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.61 2024-10-23 WeKan ® release
 
 This release adds the following updates:
 
 - [Testing packages without versions from, for upcoming upgrades](https://github.com/wekan/wekan/commit/6e8e581ceb330a7756403efa1f8bbe5a198ff111).
   Thanks to xet7.
+- [Updated to MongoDB 6.0.18 at Snap Candidate](https://github.com/wekan/wekan/commit/9d92a79a284147380eb08a0c011a8815dae5209b).
+  Thanks to MongoDB developers.
 
 and fixes the following bugs:
 
@@ -32,6 +112,10 @@ and fixes the following bugs:
   Thanks to webenefits and xet7.
 - [Try 6 to fix apparmor denied in syslog at Snap Candidate](https://github.com/wekan/wekan/commit/5aa38c2e40429f06aac8bc1bc0b5ac30c5344c6f).
   Thanks to webenefits and xet7.
+- [Renaming list shows in activities](https://github.com/wekan/wekan/pull/5549).
+  Thanks to AdenKoziol.
+- [Fixing opening cards and slow performance of closing cards by reverting switching kadira:flow-router to ostrio:flow-router-extra](https://github.com/wekan/wekan/pull/5552).
+  Thanks to mfilser.
 
 Thanks to above GitHub users for their contributions and translators for their translations.
 

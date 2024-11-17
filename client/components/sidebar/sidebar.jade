@@ -5,7 +5,12 @@ template(name="sidebar")
     //  title="{{showTongueTitle}}")
     //  i.fa.fa-navicon
     .sidebar-shadow
-      a.sidebar-xmark.js-close-sidebar &#10005;
+      .sidebar-actions
+        .sidebar-shortcuts
+          a.board-header-btn.js-shortcuts(title="{{_ 'keyboard-shortcuts' }}")
+            i.fa.fa-keyboard-o
+            span {{_ 'keyboard-shortcuts' }}
+        a.sidebar-xmark.js-close-sidebar &#10005;
       .sidebar-content.js-board-sidebar-content
         //a.hide-btn.js-hide-sidebar
         //  i.fa.fa-navicon
@@ -28,9 +33,16 @@ template(name='homeSidebar')
       .materialCheckBox(class="{{#if hiddenMinicardLabelText}}is-checked{{/if}}")
   hr
   unless currentUser.isNoComments
-    h3
+    h3.activity-title
       i.fa.fa-comments-o
       | {{_ 'activities'}}
+
+      .material-toggle-switch(title="{{_ 'show-activities'}}")
+        if showActivities
+          input.toggle-switch(type="checkbox" id="toggleShowActivitiesBoard" checked="checked")
+        else
+          input.toggle-switch(type="checkbox" id="toggleShowActivitiesBoard")
+        label.toggle-label(for="toggleShowActivitiesBoard")
     +activities(mode="board")
 
 template(name="membersWidget")
@@ -40,11 +52,6 @@ template(name="membersWidget")
         a.board-header-btn.js-open-board-menu(title="{{_ 'boardMenuPopup-title'}}")
           i.board-header-btn-icon.fa.fa-cog
           | {{_ 'boardMenuPopup-title'}}
-  .board-widget.board-widget-members
-      .sidebar-shortcuts
-        a.board-header-btn.js-shortcuts(title="{{_ 'keyboard-shortcuts' }}")
-          i.fa.fa-keyboard-o
-          span {{_ 'keyboard-shortcuts' }}
   hr
   h3
     i.fa.fa-users

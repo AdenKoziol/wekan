@@ -12,7 +12,6 @@ import CardComments from '/models/cardComments';
 import { ALLOWED_COLORS } from '/config/const';
 import { UserAvatar } from '../users/userAvatar';
 import { DialogWithBoardSwimlaneList } from '/client/lib/dialogWithBoardSwimlaneList';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 const subManager = new SubsManager();
 const { calculateIndexData } = Utils;
@@ -62,10 +61,6 @@ BlazeComponent.extendComponent({
   isWatching() {
     const card = this.currentData();
     return card.findWatcher(Meteor.userId());
-  },
-
-  hiddenSystemMessages() {
-    return ReactiveCache.getCurrentUser().hasHiddenSystemMessages();
   },
 
   customFieldsGrid() {
@@ -378,8 +373,11 @@ BlazeComponent.extendComponent({
           Session.set('cardDetailsIsDragging', false);
           Session.set('cardDetailsIsMouseDown', false);
         },
-        'click #toggleButton'() {
-          Meteor.call('toggleSystemMessages');
+        'click #toggleShowActivitiesCard'() {
+          this.data().toggleShowActivities();
+        },
+        'click #toggleHideCheckedChecklistItems'() {
+          this.data().toggleHideCheckedChecklistItems();
         },
         'click #toggleCustomFieldsGridButton'() {
           Meteor.call('toggleCustomFieldsGrid');
