@@ -15,6 +15,127 @@ Fixing other platforms In Progress.
 
 [How to upgrade WeKan](https://github.com/wekan/wekan/issues/4585)
 
+# Upcoming WeKan ® release
+
+This release adds the following updates:
+
+- [Updated URLs and email addresses](https://github.com/wekan/wekan/commit/f689d1688a9cedbbffefc073f7dd7c75a0cee9ed).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.72 2024-12-08 WeKan ® release
+
+This release adds the following new features:
+
+- [Optional board list auto-width, Support for min & max width for lists](https://github.com/wekan/wekan/pull/5607).
+  Thanks to NadavTasher.
+
+and adds the following updates:
+
+- [Disabled syncing of old and unrelated docker containers between docker registries](https://github.com/wekan/wekan/commit/17d5fae7bbd96eb6721ad869802cc980c9791c7f).
+  Thanks to xet7.
+
+and fixes the following bugs:
+
+- [Fix in API user role is not considered](https://github.com/wekan/wekan/commit/c062bd63bbfceb3a96f23ea3e8696534694db54e).
+  Thanks to mohammadZahedian and xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.71 2024-12-05 WeKan ® release
+
+This release adds the following new features:
+
+- [To menu right top username, added Support, to have info about from where to get support](https://github.com/wekan/wekan/commit/46327f19a1c6d37f2e5591aa0cc2a882e4c56ee5).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.70 2024-12-04 WeKan ® release
+
+This release adds the following new features:
+
+- [Helm Chart: Allow to define securityContext for pod and containers](https://github.com/wekan/charts/pull/37).
+  Thanks to maitredede.
+- [Move card to archive, add shortcut key ÷ for Persian keyboard](https://github.com/wekan/wekan/commit/80ea1782f935c74f1b7b1fd0fb7700ef9a39dc64).
+  Thanks to mohammadZahedian and xet7.
+
+and fixes the following bugs:
+
+- [Helm Chart: Service account token does not need to be mounted in op](https://github.com/wekan/charts/pull/38).
+  Thanks to maitredede.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.69 2024-12-02 WeKan ® release
+
+This release adds the following updates:
+
+- [Bump docker/metadata-action from 5.5.1 to 5.6.1](https://github.com/wekan/wekan/pull/5590).
+  Thanks to dependabot.
+- [Updated dependencies](https://github.com/wekan/wekan/commit/9c87572f90f16fbdddb6a4dff3984e64acac20cc).
+  Thanks to developers of dependencies.
+- [Updated Windows docs](https://github.com/wekan/wekan/commit/aa33ead7b2efd11bfd9e3f1fb94b564b6bdce119).
+  Thanks to xet7.
+- [Update docker-compose.yml Keycloak part](https://github.com/wekan/wekan/pull/5597).
+  Thanks to NadavTasher.
+- [Updated Keycloak etc login settings at start-wekan.bat and start-wekan.sh](https://github.com/wekan/wekan/commit/ab4c3bd2fc49e6fa82ec47dccdf9670110cddf98).
+  Thanks to xet7.
+- [Updated release scripts](https://github.com/wekan/wekan/commit/79f7ec27159825db9206f385d9281fd68a2aacf5).
+  Thanks to xet7.
+
+and fixes the following bugs:
+
+- [Fix issue with comments not showing when using Exodark Theme](https://github.com/wekan/wekan/pull/5595).
+  Thanks to walster001.
+- [Change archive-card shortcut to backtick for better ergonomics](https://github.com/wekan/wekan/pull/5589).
+  Thanks to malteprang.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.68 2024-11-24 WeKan ® release
+
+This release adds the following updates:
+
+- [Speed improvements to building WeKan x86_64 Dockerfile. Reduced Docker image size from 1 GB to 0.5 GB. Using Ubuntu 24.04 Docker base image](https://github.com/wekan/wekan/pull/5588).
+  Thanks to NadavTasher.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.67 2024-11-21 WeKan ® release
+
+This release adds the following new features:
+
+- [Re-introduce list auto-width feature, Reverted scrollbar hiding, Fixed transparent sidebar bug](https://github.com/wekan/wekan/pull/5586).
+  Thanks to NadavTasher.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.65 2024-11-20 WeKan ® release
+
+This release fixes the following bugs:
+
+- [Revert some scrollbar, sidebar and list width changes](https://github.com/wekan/wekan/commit/096fe130f68e0d8d082d309901c75ed04285b7e2).
+  Thanks to xet7.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
+# v7.64 2024-11-20 WeKan ® release
+
+This release fixes the following bugs:
+
+- [Add missing semicolon in keyboard.js](https://github.com/wekan/wekan/pull/5580).
+  Thanks to NadavTasher.
+- [Make lists fill up space evenly, change listWidth to max-width](https://github.com/wekan/wekan/pull/5581).
+  Thanks to NadavTasher.
+- [Change way of disabling scrollbars, disable swimlane scrollbars](https://github.com/wekan/wekan/pull/5583).
+  Thanks to NadavTasher.
+- [Improve list auto-width, fix regressions](https://github.com/wekan/wekan/pull/5584).
+  Thanks to NadavTasher.
+
+Thanks to above GitHub users for their contributions and translators for their translations.
+
 # v7.63 2024-11-16 WeKan ® release
 
 This release adds the following new features:

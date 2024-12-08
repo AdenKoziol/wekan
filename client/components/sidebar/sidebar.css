@@ -5,14 +5,9 @@
   right: 0;
   overflow-y: scroll;
 }
-.sidebar::-webkit-scrollbar {
-  /* Hide scroll bars from middle of the screen */
-  display: none !important;
-}
-.sidebar .sidebar-shadow {
+.sidebar {
   background: #f7f7f7;
   box-shadow: -10px 0px 5px -10px #b3b3b3;
-  height: 100%;
 }
 .sidebar-xmark {
   position: absolute;
@@ -33,7 +28,6 @@
 }
 .sidebar .sidebar-content {
   padding: 0 12px;
-  margin-bottom: 1.6em;
 }
 .sidebar .sidebar-content .hide-btn {
   display: none;
